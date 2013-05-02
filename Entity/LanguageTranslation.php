@@ -28,12 +28,12 @@ class LanguageTranslation {
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Raindrop\TranslationBundle\Entity\Language", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Raindrop\TranslationBundle\Entity\Language", fetch="EAGER", cascade={"persist", "remove", "merge"})
      */
     private $language;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Raindrop\TranslationBundle\Entity\LanguageToken", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Raindrop\TranslationBundle\Entity\LanguageToken", fetch="EAGER", inversedBy="translations", cascade={"persist", "remove", "merge"})
      */
     private $languageToken;
 

@@ -50,4 +50,8 @@ class Language {
     public function setName($name) {
         $this->name = $name;
     }
+
+    public function __toString() {
+        return (string) $this->getLocale();
+    }
 }
