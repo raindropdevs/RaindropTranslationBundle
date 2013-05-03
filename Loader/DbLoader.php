@@ -21,7 +21,7 @@ class DBLoader implements LoaderInterface{
     function load($resource, $locale, $domain = 'messages'){
         //Load on the db for the specified local
         $language = $this->languageRepository->findByLocale($locale);
-
+        
         $translations = $this->translationRepository->getTranslations($language, $domain);
 
         $catalogue = new MessageCatalogue($locale);
