@@ -23,7 +23,7 @@ class LanguageTranslation {
     private $catalogue;
 
 
-    /** @ORM\column(type="text") */
+    /** @ORM\column(type="text", nullable=true) */
     private $translation;
 
 
@@ -76,5 +76,9 @@ class LanguageTranslation {
 
     public function setLanguageToken($languageToken) {
         $this->languageToken = $languageToken;
+    }
+
+    public function __toString() {
+        return (string) $this->getTranslation();
     }
 }
