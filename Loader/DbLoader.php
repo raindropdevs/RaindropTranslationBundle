@@ -18,16 +18,13 @@ class DBLoader implements LoaderInterface{
         $this->languageRepository = $entityManager->getRepository("RaindropTranslationBundle:Language");
     }
 
-    function load($resource, $locale, $domain = 'messages'){
-        //Load on the db for the specified local
+    //Load from the db for the specified local
+    function load($resource, $locale, $domain = 'messages') {
         $language = $this->languageRepository->findByLocale($locale);
-        
         $translations = $this->translationRepository->getTranslations($language, $domain);
-
         $catalogue = new MessageCatalogue($locale);
 
-        /**@var $translation Frtrains\CommonbBundle\Entity\LanguageTranslation */
-        foreach($translations as $translation){
+        foreach($translations as $translation) {
             $catalogue->set($translation->getLanguageToken()->getToken(), $translation->getTranslation(), $domain);
         }
 
