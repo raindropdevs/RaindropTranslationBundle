@@ -18,4 +18,18 @@ class LanguageTranslationRepository extends EntityRepository {
 
         return $query->getResult();
     }
+
+    public function findByLanguageAndTokenAndCatalogue($language, $token, $catalogue) {
+        $qb = $this
+            ->createQueryBuilder('t')
+            ->leftJoin('t.language', 'l')
+            ->leftJoin('t.languageToken', 'lt')
+            ->where('l.locale = :language AND lt.token = :token AND t.catalogue = :catalogue');
+
+        $qb->setParameter("language", $language);
+        $qb->setParameter("token", $token);
+        $qb->setParameter("catalogue", $catalogue);
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

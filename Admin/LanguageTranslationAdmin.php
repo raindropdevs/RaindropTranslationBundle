@@ -29,7 +29,11 @@ class LanguageTranslationAdmin extends Admin
         $formMapper
             ->add('language', 'text', array(
                 'read_only' => true,
-                'data' => $data
+                'property_path' => false,
+                'data' => $data,
+                'attr' => array(
+                    'class' => 'span2'
+                )
             ))
             ->add('translation', 'textarea', array('required' => true))
         ;
@@ -38,6 +42,7 @@ class LanguageTranslationAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('language')
             ->add('translation')
         ;
     }
@@ -45,6 +50,8 @@ class LanguageTranslationAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('language')
+            ->addIdentifier('languageToken')
             ->addIdentifier('translation')
         ;
     }
