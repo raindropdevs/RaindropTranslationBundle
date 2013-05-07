@@ -1,2 +1,6 @@
+composer.lock
+composer.phar
+phpunit.xml
+vendor
 /Resources/translations/*
 !/Resources/translations/.ignore
