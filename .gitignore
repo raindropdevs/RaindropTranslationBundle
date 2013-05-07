@@ -2,5 +2,5 @@ composer.lock
 composer.phar
 phpunit.xml
 vendor
-/Resources/translations/*
-!/Resources/translations/.ignore
+Resources/translations/*
+!Resources/translations/.gitkeep
