@@ -5,7 +5,7 @@ namespace Raindrop\TranslationBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Raindrop\TranslationBundle\Entity\LanguageRepository")
+ * @ORM\Entity()
  * @ORM\Table(name="i18n_language")
  */
 class Language {
