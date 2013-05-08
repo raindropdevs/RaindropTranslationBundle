@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Raindrop\TranslationBundle\Entity\LanguageTokenRepository")
  * @ORM\Table(name="i18n_language_token")
  */
-class LanguageToken {
-
+class LanguageToken
+{
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -27,20 +27,23 @@ class LanguageToken {
      */
     private $translations;
 
-
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getToken() {
+    public function getToken()
+    {
         return $this->token;
     }
 
-    public function setToken($token) {
+    public function setToken($token)
+    {
         $this->token = $token;
     }
     /**
@@ -54,7 +57,7 @@ class LanguageToken {
     /**
      * Add translations
      *
-     * @param \Raindrop\TranslationBundle\Entity\LanguageTranslation $translations
+     * @param  \Raindrop\TranslationBundle\Entity\LanguageTranslation $translations
      * @return LanguageToken
      */
     public function addTranslation(\Raindrop\TranslationBundle\Entity\LanguageTranslation $translations)
@@ -84,7 +87,8 @@ class LanguageToken {
         return $this->translations;
     }
 
-    public function __toString() {
+    public function __toString()
+    {
         return (string) $this->getToken();
     }
 }

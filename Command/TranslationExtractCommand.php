@@ -2,7 +2,6 @@
 
 namespace Raindrop\TranslationBundle\Command;
 
-
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -12,7 +11,6 @@ use Symfony\Component\Console\Input\InputOption;
 use Raindrop\TranslationBundle\Entity\Language;
 use Raindrop\TranslationBundle\Entity\LanguageToken;
 use Raindrop\TranslationBundle\Entity\LanguageTranslation;
-use Symfony\Component\Translation\MessageCatalogue;
 
 /**
  * Description of TranslationExtractCommand
@@ -27,8 +25,8 @@ use Symfony\Component\Translation\MessageCatalogue;
  *
  * @author teito
  */
-class TranslationExtractCommand extends ContainerAwareCommand {
-
+class TranslationExtractCommand extends ContainerAwareCommand
+{
     protected $orm, $twig, $messages;
 
     /**
@@ -95,7 +93,6 @@ EOF
             ->getRepository('RaindropTwigLoaderBundle:TwigTemplate')
             ->findAll();
 
-
         foreach ($files as $file) {
             $this->extractTokensFromTemplate($language, $file->getTemplate());
         }
@@ -114,7 +111,8 @@ EOF
         }
     }
 
-    protected function setupLanguageFile($catalogue, $languageEntity) {
+    protected function setupLanguageFile($catalogue, $languageEntity)
+    {
         $languageFile = __DIR__ . sprintf("/../Resources/translations/%s.%s.db", $catalogue, $languageEntity);
         if (!file_exists($languageFile)) {
             touch($languageFile);
@@ -128,7 +126,8 @@ EOF
      * @param type $language
      * @param type $template
      */
-    protected function extractTokensFromTemplate($languageEntity, $template) {
+    protected function extractTokensFromTemplate($languageEntity, $template)
+    {
         $visitor = $this->twig->getExtension('translator')->getTranslationNodeVisitor();
         $visitor->enable();
 
@@ -149,8 +148,8 @@ EOF
      * @param type $message
      * @param type $catalogue
      */
-    protected function createTokenAndMessageForLocale($message, $languageEntity, $catalogue) {
-
+    protected function createTokenAndMessageForLocale($message, $languageEntity, $catalogue)
+    {
         // this gets invoked to make sure the catalogue file is present
         $this->setupLanguageFile($catalogue, $languageEntity);
 
@@ -180,7 +179,8 @@ EOF
         $this->orm->persist($translation);
     }
 
-    protected function getLanguage($locale) {
+    protected function getLanguage($locale)
+    {
         $language = $this->orm
                 ->getRepository('RaindropTranslationBundle:Language')
                 ->findOneByLocale($locale);
@@ -195,5 +195,3 @@ EOF
         return $language;
     }
 }
-
-?>

@@ -7,7 +7,6 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\DependencyInjection\Container;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Raindrop\TranslationBundle\Entity\Language;
 
 class LanguageTranslationAdmin extends Admin
@@ -64,5 +63,3 @@ class LanguageTranslationAdmin extends Admin
     {
     }
 }
-
-?>
