@@ -177,6 +177,7 @@ EOF
         }
 
         $this->orm->persist($translation);
+        $this->orm->flush();
     }
 
     protected function getLanguage($locale)
