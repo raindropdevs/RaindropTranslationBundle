@@ -51,7 +51,7 @@ class TranslationExtractCommand extends ContainerAwareCommand
                     'Should the update be done'
                 )
             ))
-            ->setDescription('Updates the translation file fetching data from database')
+            ->setDescription('Extract strings from templates into database and saves them to database')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command extract translation strings from templates
 stored in the database. It can display them or merge the new ones into the translation files.
