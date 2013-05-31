@@ -23,6 +23,11 @@ class LanguageToken
     private $token;
 
     /**
+     * @ORM\column(type="string", length=200)
+     */
+    private $catalogue;
+
+    /**
      * @ORM\OneToMany(targetEntity="Raindrop\TranslationBundle\Entity\LanguageTranslation", mappedBy="languageToken", fetch="EAGER", cascade={"persist", "remove", "merge"}, orphanRemoval=true)
      */
     private $translations;
@@ -46,6 +51,17 @@ class LanguageToken
     {
         $this->token = $token;
     }
+
+    public function getCatalogue()
+    {
+        return $this->catalogue;
+    }
+
+    public function setCatalogue($catalogue)
+    {
+        $this->catalogue = $catalogue;
+    }
+
     /**
      * Constructor
      */
