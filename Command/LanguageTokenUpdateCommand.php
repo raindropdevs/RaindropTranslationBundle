@@ -117,7 +117,7 @@ EOF
      */
     protected function createToken($message, $catalogue)
     {
-        $this->messages[] = $token;
+        $this->messages[] = $message;
 
         $token = $this->orm
                 ->getRepository('RaindropTranslationBundle:LanguageToken')
