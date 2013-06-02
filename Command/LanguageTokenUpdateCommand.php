@@ -112,20 +112,20 @@ EOF
     /**
      * Create token (if not present)
      *
-     * @param string $message
+     * @param string $token
      * @param string $catalogue
      */
-    protected function createToken($message, $catalogue)
+    protected function createToken($token, $catalogue)
     {
-        $this->messages[] = $message;
+        $this->messages[] = $token;
 
         $token = $this->orm
                 ->getRepository('RaindropTranslationBundle:LanguageToken')
-                ->findOneByToken($message);
+                ->findOneBy(array('token' => $token, 'catalogue' => $catalogue));
 
         if (!$token) {
             $token = new LanguageToken;
-            $token->setToken($message);
+            $token->setToken($token);
             $token->setCatalogue($catalogue);
             $this->orm->persist($token);
         }
