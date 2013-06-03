@@ -133,7 +133,7 @@ EOF
 
         $translation = $this->orm
                 ->getRepository('RaindropTranslationBundle:LanguageTranslation')
-                ->findByLanguageAndTokenAndCatalogue($languageEntity->getLocale(), $token, $catalogue);
+                ->findByLanguageAndTokenAndCatalogue($languageEntity, $token, $catalogue);
 
         if (!$translation) {
             $translation = new LanguageTranslation;
