@@ -26,7 +26,7 @@ class LanguageTranslationRepository extends EntityRepository
             ->createQueryBuilder('t')
             ->leftJoin('t.language', 'l')
             ->leftJoin('t.languageToken', 'lt')
-            ->where('l.locale = :language AND lt.token = :token AND t.catalogue = :catalogue');
+            ->where('t.language = :language AND t.languageToken = :token AND t.catalogue = :catalogue');
 
         $qb->setParameter("language", $language);
         $qb->setParameter("token", $token);
