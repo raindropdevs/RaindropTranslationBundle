@@ -73,7 +73,11 @@ EOF
                 $languageEntity = $this->getLanguage($locale);
 
                 $translation = $this->getTranslation($token, $languageEntity, $catalogue);
-                $translation->setTranslation($row[$i]);
+
+                // if a translation exists
+                if ($row[$i]) {
+                    $translation->setTranslation($row[$i]);
+                }
 
                 $i++;
             }
