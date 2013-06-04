@@ -143,6 +143,7 @@ EOF
         }
 
         $this->orm->persist($translation);
+        $this->orm->clear();
         $this->orm->flush();
     }
 
