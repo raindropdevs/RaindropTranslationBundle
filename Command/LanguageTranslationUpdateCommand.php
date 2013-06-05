@@ -143,7 +143,6 @@ EOF
         }
 
         $this->orm->persist($translation);
-        $this->orm->clear();
         $this->orm->flush();
     }
 
@@ -158,6 +157,7 @@ EOF
             $language->setLocale($locale);
             $language->setName($locale);
             $this->orm->persist($language);
+            $this->orm->flush();
         }
 
         return $language;

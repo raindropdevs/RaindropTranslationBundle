@@ -150,6 +150,7 @@ EOF
             $translation->setLanguageToken($token);
             $translation->setCatalogue($catalogue);
             $this->orm->persist($translation);
+            $this->orm->flush();
         }
 
         return $translation;

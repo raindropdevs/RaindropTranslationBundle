@@ -128,8 +128,7 @@ EOF
             $token->setToken($message);
             $token->setCatalogue($catalogue);
             $this->orm->persist($token);
+            $this->orm->flush();
         }
-
-        $this->orm->flush();
     }
 }
