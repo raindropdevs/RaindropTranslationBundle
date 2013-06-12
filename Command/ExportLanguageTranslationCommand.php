@@ -80,7 +80,9 @@ EOF
                         ->getRepository('RaindropTranslationBundle:LanguageTranslation')
                         ->findOneBy(array('language' => $language, 'languageToken' => $token, 'catalogue' => $token->getCatalogue()));
 
-                $catalogue->set($token->getToken(), $translation->getTranslation());
+                if (!empty ($translation)) {
+                    $catalogue->set($token->getToken(), $translation->getTranslation());
+                }
             }
 
             $writer->writeTranslations($catalogue, $input->getOption('output-format'), array('path' => $bundleTransPath));
