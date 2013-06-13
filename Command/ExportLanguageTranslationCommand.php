@@ -81,7 +81,8 @@ EOF
                         ->findOneBy(array('language' => $language, 'languageToken' => $token, 'catalogue' => $token->getCatalogue()));
 
                 if (!empty ($translation)) {
-                    $catalogue->set($token->getToken(), $translation->getTranslation());
+                    $content = $translation->getTranslation() != '' ? $translation->getTranslation() : null;
+                    $catalogue->set($token->getToken(), $content);
                 }
             }
 
