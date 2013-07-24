@@ -20,8 +20,6 @@ class LanguageTokenAdmin extends Admin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $em = $this->container->get('doctrine.orm.default_entity_manager');
-        $transformer = new LanguageToLocaleTransformer($em);
 
         $formMapper
             ->add('token', null, array('required' => true))
@@ -36,6 +34,14 @@ class LanguageTokenAdmin extends Admin
             ))
         ;
 
+        /**
+         * There is need to show the locale for each translation but
+         * not to edit, so we add a transformer that simply puts language object
+         * as token property on form submission not to break doctrine cascade
+         * saving operations.
+         */
+        $em = $this->container->get('doctrine.orm.default_entity_manager');
+        $transformer = new LanguageToLocaleTransformer($em);
         $formMapper->get('translations')->addModelTransformer($transformer);
     }
 
@@ -51,13 +57,5 @@ class LanguageTokenAdmin extends Admin
         $listMapper
             ->addIdentifier('token')
         ;
-    }
-
-    public function preUpdate($variable)
-    {
-    }
-
-    public function postUpdate($variable)
-    {
     }
 }
