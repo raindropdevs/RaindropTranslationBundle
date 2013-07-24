@@ -103,6 +103,11 @@ class LanguageToken
         return $this->translations;
     }
 
+    public function setTranslations($translations)
+    {
+        $this->translations = $translations;
+    }
+
     public function __toString()
     {
         return (string) $this->getToken();

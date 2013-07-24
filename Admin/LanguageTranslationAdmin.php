@@ -20,21 +20,13 @@ class LanguageTranslationAdmin extends Admin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $data = '';
-        if ($this->getSubject()->getLanguage() instanceof Language) {
-            $data = $this->getSubject()->getLanguage()->getLocale();
-        }
 
         $formMapper
             ->add('language', 'text', array(
                 'read_only' => true,
-                'property_path' => false,
-                'data' => $data,
-                'attr' => array(
-                    'class' => 'span2'
-                )
+                'data_class' => 'Raindrop\TranslationBundle\Entity\Language'
             ))
-            ->add('translation', 'textarea', array('required' => true))
+            ->add('translation')
         ;
     }
 
@@ -42,24 +34,44 @@ class LanguageTranslationAdmin extends Admin
     {
         $datagridMapper
             ->add('language')
+            ->add('languageToken', 'doctrine_orm_callback', array(
+                'callback' => array($this, 'callbackToken')
+            ), 'text', array())
             ->add('translation')
         ;
+    }
+
+    public function callbackToken($queryBuilder, $alias, $field, $value)
+    {
+        if (!is_array($value) or empty($value['value'])) {
+            return;
+        }
+
+        $queryBuilder
+                ->leftJoin( $alias . '.languageToken', 't')
+                ->andWhere('t.token LIKE :token')
+                ->setParameter('token', '%' . $value['value'] . '%')
+                ;
+
+        return true;
     }
 
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
             ->addIdentifier('language')
-            ->addIdentifier('languageToken')
-            ->addIdentifier('translation')
+            ->add('languageToken')
+            ->add('translation')
         ;
     }
 
-    public function preUpdate($variable)
+    public function preUpdate($translation)
     {
+        var_dump($translation);
+        die();
     }
 
-    public function postUpdate($variable)
+    public function postUpdate($translation)
     {
     }
 }
