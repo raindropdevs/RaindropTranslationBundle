@@ -32,7 +32,7 @@ class ImportLanguageTranslationCommand extends ContainerAwareCommand
                     'Should the translations be dumped in the console'
                 ),
             ))
-            ->setDescription('Extract translation from database')
+            ->setDescription('Imports translation from resource file (CSV) and save to database')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command import translation strings stored in a csv file.
 

@@ -34,7 +34,7 @@ class LanguageTokenUpdateCommand extends ContainerAwareCommand
                     'Should the update be done'
                 )
             ))
-            ->setDescription('Extract strings from templates into database and saves them to database')
+            ->setDescription('Extract strings from templates into database and dump them')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command extract translation strings from templates
 stored in the database. It can display them or merge the new ones into the database.

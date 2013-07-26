@@ -28,7 +28,7 @@ class ExportLanguageTranslationCommand extends ContainerAwareCommand
                     'Override the default output format', 'yml'
                 ),
             ))
-            ->setDescription('Extract translation from database')
+            ->setDescription('Extract translation from database and dump to filesystem')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command extract translation strings stored in the database.
 

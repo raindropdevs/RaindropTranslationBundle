@@ -20,14 +20,24 @@ class LanguageTranslationAdmin extends Admin
 
     protected function configureFormFields(FormMapper $formMapper)
     {
+        if ($this->getSubject()->getId()) {
+            // edit
+            $formMapper
+                ->add('language', 'text', array(
+                    'read_only' => true,
+                    'data_class' => 'Raindrop\TranslationBundle\Entity\Language'
+                ))
+                ->add('translation')
+            ;
+        } else {
+            // create
+            $formMapper
+                ->add('languageToken')
+                ->add('language')
+                ->add('translation')
+            ;
+        }
 
-        $formMapper
-            ->add('language', 'text', array(
-                'read_only' => true,
-                'data_class' => 'Raindrop\TranslationBundle\Entity\Language'
-            ))
-            ->add('translation')
-        ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -67,8 +77,8 @@ class LanguageTranslationAdmin extends Admin
 
     public function preUpdate($translation)
     {
-        var_dump($translation);
-        die();
+//        var_dump($translation);
+//        die();
     }
 
     public function postUpdate($translation)

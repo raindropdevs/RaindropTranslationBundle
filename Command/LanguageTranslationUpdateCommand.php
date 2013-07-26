@@ -46,7 +46,7 @@ class LanguageTranslationUpdateCommand extends ContainerAwareCommand
                     'Should the update be done'
                 )
             ))
-            ->setDescription('Extract tokens from database and saves translation to database')
+            ->setDescription('Load tokens from LanguageToken table and creates empty translation into database')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command extract translation strings stored in the database
 and saves translations to database.
