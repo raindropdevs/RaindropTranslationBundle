@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\DependencyInjection\Container;
 use Raindrop\TranslationBundle\Entity\Language;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class LanguageTranslationAdmin extends Admin
 {
@@ -16,6 +17,11 @@ class LanguageTranslationAdmin extends Admin
     public function setContainer($container)
     {
         $this->container = $container;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('create');
     }
 
     protected function configureFormFields(FormMapper $formMapper)
