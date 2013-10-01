@@ -5,6 +5,23 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+
+        <service id="raindrop.translation.language.admin" class="Raindrop\TranslationBundle\Admin\LanguageTranslationAdmin">
+
+            <argument />
+            <argument>Raindrop\TranslationBundle\Entity\LanguageTranslation</argument>
+            <argument>SonataAdminBundle:CRUD</argument>
+
+            <tag name="sonata.admin" manager_type="orm" group="i18n" label="Strings"/>
+
+            <call method="setTranslationDomain">
+                <argument>RaindropPageBundle</argument>
+            </call>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
         <service id="raindrop.translation.language_token.admin" class="Raindrop\TranslationBundle\Admin\LanguageTokenAdmin">
 
             <argument />
