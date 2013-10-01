@@ -20,18 +20,20 @@ class LanguageTranslation
     /**
      * @ORM\column(type="string", length=200)
      */
-    private $catalogue;
+    private $catalogue = 'messages';
 
-    /** @ORM\column(type="text", nullable=true) */
+    /**
+     * @ORM\column(type="text", nullable=true)
+     */
     private $translation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Raindrop\TranslationBundle\Entity\Language", fetch="EAGER", cascade={"persist", "remove", "merge"})
+     * @ORM\ManyToOne(targetEntity="Raindrop\TranslationBundle\Entity\Language")
      */
     private $language;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Raindrop\TranslationBundle\Entity\LanguageToken", fetch="EAGER", inversedBy="translations", cascade={"persist", "remove", "merge"})
+     * @ORM\ManyToOne(targetEntity="Raindrop\TranslationBundle\Entity\LanguageToken", inversedBy="translations")
      */
     private $languageToken;
 

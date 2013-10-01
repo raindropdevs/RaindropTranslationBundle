@@ -25,7 +25,7 @@ class LanguageToken
     /**
      * @ORM\column(type="string", length=200)
      */
-    private $catalogue;
+    private $catalogue = 'messages';
 
     /**
      * @ORM\OneToMany(targetEntity="Raindrop\TranslationBundle\Entity\LanguageTranslation", mappedBy="languageToken", fetch="EAGER", cascade={"persist", "remove", "merge"}, orphanRemoval=true)

@@ -7,7 +7,6 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\DependencyInjection\Container;
-use Raindrop\TranslationBundle\Transformer\LanguageToLocaleTransformer;
 
 class LanguageTokenAdmin extends Admin
 {
@@ -31,18 +30,7 @@ class LanguageTokenAdmin extends Admin
             ), array(
                 'edit' => 'inline',
                 'inline' => 'table'
-            ))
-        ;
-
-        /**
-         * There is need to show the locale for each translation but
-         * not to edit, so we add a transformer that simply puts language object
-         * as token property on form submission not to break doctrine cascade
-         * saving operations.
-         */
-        $em = $this->container->get('doctrine.orm.default_entity_manager');
-        $transformer = new LanguageToLocaleTransformer($em);
-        $formMapper->get('translations')->addModelTransformer($transformer);
+            ));
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -57,5 +45,21 @@ class LanguageTokenAdmin extends Admin
         $listMapper
             ->addIdentifier('token')
         ;
+    }
+
+    public function prePersist($languageToken)
+    {
+        foreach ($languageToken->getTranslations() as $translation) {
+            $translation->setLanguageToken($languageToken);
+        }
+    }
+
+    public function preUpdate($languageToken)
+    {
+        foreach ($languageToken->getTranslations() as $translation) {
+            $translation->setLanguageToken($languageToken);
+        }
+
+        $languageToken->setTranslations($languageToken->getTranslations());
     }
 }
