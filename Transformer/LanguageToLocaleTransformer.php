@@ -68,5 +68,3 @@ class LanguageToLocaleTransformer implements DataTransformerInterface
         return $collection;
     }
 }
-
-?>
